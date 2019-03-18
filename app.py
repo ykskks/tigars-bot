@@ -53,12 +53,13 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
+    txt = '作成中、暫し待たれ！'
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
+        TextSendMessage(text=event.message.text+txt)
     )
 
 
 if __name__ == "__main__":
     port = int(os.getenv('PORT'))
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port)
