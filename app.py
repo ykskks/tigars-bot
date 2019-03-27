@@ -27,7 +27,7 @@ channel_access_token = os.getenv('YOUR_CHANNEL_ACCESS_TOKEN')
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-time_zone = os.getenv('TZ')
+#time_zone = os.getenv('TZ')
 
 
 @app.route("/")
@@ -54,7 +54,7 @@ def callback():
 
 def game_scheduled():
     url = os.getenv('URL')
-    today = datetime.date.today(time_zone).strftime('%-m/%-d')
+    today = datetime.date.today().strftime('%-m/%-d')
     res = requests.get(url).text
     soup = BeautifulSoup(res, 'html.parser')
     #check if there is a match scheduled today and return True if so
@@ -75,7 +75,7 @@ def get_broadcast_info():
 
 @app.route("/push_broadcast_info", methods=['GET'])
 def push_broadcast_info():
-    today = datetime.date.today(time_zone).strftime('%-m/%-d')
+    today = datetime.date.today().strftime('%-m/%-d')
     
     if game_scheduled():
         broadcasters = get_broadcast_info()
@@ -100,7 +100,7 @@ def push_broadcast_info():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    txt = '作成中、暫し待たれ！'
+    txt = '\nオウム返ししたよ！'
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text+txt)
