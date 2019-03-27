@@ -81,15 +81,16 @@ def push_broadcast_info():
         broadcasters = get_broadcast_info()
         #試合はあるが中継がないとき
         if len(broadcasters) == 0:
-            push_text = today + 'の中継予定なし\n'
+            push_text = today + 'の中継予定なし'
         else:
             push_text = today + 'の中継予定:\n'
             for i in range(len(broadcasters)):
                 broadcaster_name = broadcasters.loc[i, '放送局']
                 broadcast_time = broadcasters.loc[i,  '時間']
                 push_text += broadcaster_name + ' ' + broadcast_time + '\n'
+            push_text += '楽しみですね！'
     else:
-        push_text = today + 'の試合予定なし:\n'
+        push_text = today + 'の試合予定なし'
 
     to = os.getenv('YOUR_USER_ID')
     line_bot_api.push_message(to, TextSendMessage(text=push_text))
