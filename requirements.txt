@@ -3,3 +3,5 @@ line-bot-sdk==1.8.0
 beautifulsoup4==4.6.0
 requests==2.21.0
 pandas==0.23.4
+lxml==3.7.3
+html5lib==0.999
