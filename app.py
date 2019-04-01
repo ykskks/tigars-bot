@@ -53,7 +53,7 @@ def message_text(event):
         info.columns = stats
 
         info_wanted = info.loc['阪神', event.message.text]
-        info_wanted = round(info_wanted, 2) if event.message.text == '防御率' else info_wanted
+        info_wanted = str(round(info_wanted, 2)) if event.message.text == '防御率' else info_wanted
 
         line_bot_api.reply_message(
             event.reply_token, 
